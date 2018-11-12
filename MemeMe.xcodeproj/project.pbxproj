@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		8D48C6B42198F0670050290F /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D48C6B32198F0670050290F /* Meme.swift */; };
 		8DCE9BB021923A9300F4FD40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE9BAF21923A9300F4FD40 /* AppDelegate.swift */; };
-		8DCE9BB221923A9300F4FD40 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE9BB121923A9300F4FD40 /* ViewController.swift */; };
+		8DCE9BB221923A9300F4FD40 /* MainMemeMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCE9BB121923A9300F4FD40 /* MainMemeMeViewController.swift */; };
 		8DCE9BB521923A9300F4FD40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DCE9BB321923A9300F4FD40 /* Main.storyboard */; };
 		8DCE9BB721923A9300F4FD40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DCE9BB621923A9300F4FD40 /* Assets.xcassets */; };
 		8DCE9BBA21923A9300F4FD40 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DCE9BB821923A9300F4FD40 /* LaunchScreen.storyboard */; };
@@ -38,7 +38,7 @@
 		8D48C6B32198F0670050290F /* Meme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
 		8DCE9BAC21923A9300F4FD40 /* MemeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DCE9BAF21923A9300F4FD40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8DCE9BB121923A9300F4FD40 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8DCE9BB121923A9300F4FD40 /* MainMemeMeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMemeMeViewController.swift; sourceTree = "<group>"; };
 		8DCE9BB421923A9300F4FD40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8DCE9BB621923A9300F4FD40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8DCE9BB921923A9300F4FD40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -100,7 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				8DCE9BAF21923A9300F4FD40 /* AppDelegate.swift */,
-				8DCE9BB121923A9300F4FD40 /* ViewController.swift */,
+				8DCE9BB121923A9300F4FD40 /* MainMemeMeViewController.swift */,
 				8DCE9BB321923A9300F4FD40 /* Main.storyboard */,
 				8DCE9BB621923A9300F4FD40 /* Assets.xcassets */,
 				8DCE9BB821923A9300F4FD40 /* LaunchScreen.storyboard */,
@@ -263,7 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D48C6B42198F0670050290F /* Meme.swift in Sources */,
-				8DCE9BB221923A9300F4FD40 /* ViewController.swift in Sources */,
+				8DCE9BB221923A9300F4FD40 /* MainMemeMeViewController.swift in Sources */,
 				8DCE9BB021923A9300F4FD40 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -431,9 +431,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = FF8MP8G43W;
 				INFOPLIST_FILE = MemeMe/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fatima.MemeMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -447,9 +447,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = FF8MP8G43W;
 				INFOPLIST_FILE = MemeMe/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fatima.MemeMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";

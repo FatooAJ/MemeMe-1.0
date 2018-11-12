@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController,UIImagePickerControllerDelegate,
+class MainMemeMeViewController: UIViewController,UIImagePickerControllerDelegate,
 UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var toolBar: UIToolbar!
@@ -23,21 +23,23 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         NSAttributedStringKey.strokeColor.rawValue: UIColor.black,
         NSAttributedStringKey.foregroundColor.rawValue: UIColor.white,
         NSAttributedStringKey.font.rawValue: UIFont(name: "HelveticaNeue-CondensedBlack", size: 30)!,
-        NSAttributedStringKey.strokeWidth.rawValue: 4]
+        NSAttributedStringKey.strokeWidth.rawValue: -4.0]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        topTextField.delegate = self
-        bottomTextField.delegate = self
         topTextField.text = "TOP"
         bottomTextField.text = "BOTTOM"
-        topTextField.textAlignment = .center
-        bottomTextField.textAlignment = .center
-        topTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.defaultTextAttributes = memeTextAttributes
+        textFieldStyle(topTextField)
+        textFieldStyle(bottomTextField)
         shareButton.isEnabled = false
         
+    }
+    func textFieldStyle(_ textField: UITextField){
+        textField.delegate = self
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = .center
+
     }
     override func viewWillAppear(_ animated: Bool) {
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
@@ -50,16 +52,17 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         unsubscribeFromKeyboardNotifications()
     }
     func subscribeToKeyboardNotifications() {
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
-    }
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)}
+    
     
     func unsubscribeFromKeyboardNotifications() {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
     }
     @objc func keyboardWillShow(_ notification:Notification) {
-        view.frame.origin.y -= getKeyboardHeight(notification)
+        if (bottomTextField.isEditing){
+            view.frame.origin.y -= getKeyboardHeight(notification)}
     }
     @objc func keyboardWillHide(_ notification:Notification) {
         view.frame.origin.y = 0
@@ -71,16 +74,18 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         return keyboardSize.cgRectValue.height
     }
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true, completion: nil)
+        imagePicker(source:.photoLibrary)
+
     }
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .camera
-        present(imagePicker, animated: true, completion: nil)
+        imagePicker(source:.camera)
+    }
+    func imagePicker(source: UIImagePickerControllerSourceType){
+        let imagePicked = UIImagePickerController()
+        imagePicked.delegate = self
+        imagePicked.sourceType = source
+        present(imagePicked, animated: true, completion: nil)
+        
     }
      func imagePickerController(_ picker: UIImagePickerController,didFinishPickingMediaWithInfo info: [String: Any]){
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {

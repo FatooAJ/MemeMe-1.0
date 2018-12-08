@@ -17,8 +17,12 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     
-
+    var enableCancelButton = true
+    var meme : Meme!
+    var editingMeme = false
+    
     let memeTextAttributes:[String: Any] = [
         NSAttributedStringKey.strokeColor.rawValue: UIColor.black,
         NSAttributedStringKey.foregroundColor.rawValue: UIColor.white,
@@ -30,11 +34,20 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         super.viewDidLoad()
         topTextField.text = "TOP"
         bottomTextField.text = "BOTTOM"
+
         textFieldStyle(topTextField)
         textFieldStyle(bottomTextField)
         shareButton.isEnabled = false
-        
+        cancelButton.isEnabled = enableCancelButton
+        if editingMeme {
+            imagePickerView.image = meme.originalImage
+            topTextField.text = meme.topText
+            bottomTextField.text = meme.bottomText
+            shareButton.isEnabled = true
+        }
     }
+ 
+    
     func textFieldStyle(_ textField: UITextField){
         textField.delegate = self
         textField.defaultTextAttributes = memeTextAttributes
@@ -115,7 +128,12 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         return true
     }
     func save() {
-        _ = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
+        // Add it to the memes array in the Application Delegate
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.memes.append(meme)
+        performSegue(withIdentifier: "memeSaved", sender: AnyObject.self)
     }
 
     func generateMemedImage() -> UIImage {
@@ -142,6 +160,9 @@ UINavigationControllerDelegate, UITextFieldDelegate {
                 print("Image has Saved")
             }
         }
+    }
+    @IBAction func cancelButton(_ sender: Any) {
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }
 
